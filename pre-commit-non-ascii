@@ -1,0 +1,16 @@
+#!/bin/bash
+ 
+output=`git diff --cached | grep ^+[^+] | tr -d "\000-\011\013-\177" | tr -d '\n'`
+cnt=${#output}
+if [ -n "$output" ]; then
+  echo -e "\n\nWARNING: Aborting commit! Non ascii characters found in change set:\n\n"
+  for ((i=0; i < cnt; i++))
+  do
+    char=${output:$i:1}
+    echo ""
+    echo "Found character '$char':"
+    git diff HEAD -S$char
+  done
+  exit 1
+fi
+exit 0
