@@ -1,0 +1,22 @@
+#!/usr/bin/env bash
+
+# Author:  David Linse
+# Date:    2016/06/03
+# Version: 0.0.1
+#
+# Pre-commit hook to enforce a specific commit message format.
+# Ticket number e.g. (FOO-1234), a colon (:), whitespace and finally
+# an elaborate description.
+#
+# e.g. FOO-1234: An elaborate commit message.
+#
+
+regx='(\w+-[[:digit:]]{1,4}\):\s)?[A-Z].+'
+msg=$'
+[POLICY] Please format your message correctly ..
+[POLICY] Use the format: TICKET-ID: An elaborate description\n'
+
+if ! grep -qE "$regx" "$1"; then
+  echo "$msg" >&2
+  exit 1
+fi
