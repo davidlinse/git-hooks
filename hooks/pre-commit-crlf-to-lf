@@ -1,4 +1,5 @@
-#!/bin/sh
+#!/usr/bin/env bash
+
 git diff --cached --name-only | while read FILE; do
 if [[ "$FILE" =~ ^.+(java|txt|properties|pl)$ ]]; then
     if [[ -f $FILE ]]; then

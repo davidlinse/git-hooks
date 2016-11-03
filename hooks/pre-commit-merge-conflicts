@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/usr/bin/env bash
 
 ## pre-commit script to prevent merge markers from being committed.
 ## Author: Jon Dowdle <jdowdle@gmail.com>

@@ -1,5 +1,6 @@
-#!/bin/bash
-HOOKS="pre-commit-perl pre-commit-non-ascii pre-commit-valid-xml pre-commit-merge-conflicts" 
+#!/usr/bin/env bash
+
+HOOKS="pre-commit-crlf-to-lf pre-commit-perl pre-commit-non-ascii pre-commit-valid-xml pre-commit-merge-conflicts"
 
 for hook in $HOOKS
 do

@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 git diff --cached --name-only | while read FILE; do
 if [[ "$FILE" =~ ^.+(xml)$ ]]; then

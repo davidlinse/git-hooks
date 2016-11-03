@@ -1,5 +1,5 @@
-#!/bin/bash
- 
+#!/usr/bin/env bash
+
 output=`git diff --cached | grep ^+[^+] | tr -d "\000-\011\013-\177" | tr -d '\n'`
 cnt=${#output}
 if [ -n "$output" ]; then
