@@ -1,14 +1,19 @@
 #!/usr/bin/env bash
 
+command -v dos2unix >/dev/null 2>&1 || {
+  echo >&2 "I require 'dos2unix' but it's not installed.  Skipping .."; exit 0;
+}
+
+
 git diff --cached --name-only | while read FILE; do
-if [[ "$FILE" =~ ^.+(java|txt|properties|pl)$ ]]; then
-    if [[ -f $FILE ]]; then
-        dos2unix $FILE
-        if [ $? -ne 0 ]; then
-            echo -e "\n\nWARNING: Aborting commit due error by executing command dos2unix with exit status [$?]. Fix them before committing.\n\n" >&2
-            exit 1
-        fi
-	git add $FILE
-    fi
-fi
+  if [[ "$FILE" =~ ^.+(java|txt|properties|pl)$ ]]; then
+      if [[ -f $FILE ]]; then
+          dos2unix $FILE
+          if [ $? -ne 0 ]; then
+              echo -e "\n\nWARNING: Aborting commit due error by executing command dos2unix with exit status [$?]. Fix them before committing.\n\n" >&2
+              exit 1
+          fi
+  	git add $FILE
+      fi
+  fi
 done || exit $?

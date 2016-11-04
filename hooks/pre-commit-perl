@@ -1,5 +1,9 @@
 #!/usr/bin/env bash
 
+command -v perl >/dev/null 2>&1 || {
+  echo >&2 "I require 'perl' but it's not installed.  Skipping .."; exit 0;
+}
+
 git diff --cached --name-only | while read FILE; do
   if [[ "$FILE" =~ ^.+(pl|cfg)$ ]]; then
       if [[ -f $FILE ]]; then
