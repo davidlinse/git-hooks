@@ -30,6 +30,12 @@ The format is like as follows:
 TICKET-ID: An elaborate commit message
 ```
 
+Pre Commit _Trailing Whitespaces_
+---------------------------------
+This hook will abort the commit when trailing whitespaces
+were found in the files to be committed.
+
+
 Pre Commit _CRLF-to-LF_ hook
 ------------------------------
 Enforce the _*nix_ linebreaks and converts files with _CRLF_ endings to use _LF_ line endings.
