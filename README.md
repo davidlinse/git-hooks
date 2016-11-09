@@ -4,24 +4,25 @@ A growing collection of git commit hooks mostly written in `shell` script.
 
 ### Prerequisites
 
-Some of the hooks rely on external tools like `xmllint` or `perl` so you'll need to install these.
+Some of the hooks rely on external tools like [_xmllint_][xmllint] or [_dos2unix_][dos2unix] so you'll need to install these.
 
 
 #### OSX
-The simpliest way to install these tools on OSX is `brew`.
+The simpliest way to install these tools on OSX is [_brew_][brew].
+
 ```
-$ brew install xmllint perl
+$ brew install xmllint perl dos2unix
 ```
 
 #### Windows
-For _perl_ use the official installer and for _xmllint_ see the link in the description of the _Valid-XML_ hook.
+For _perl_ use the official installer and for [_xmllint_][xmllint] see the link in the description of the _Valid-XML_ hook.
 
 
 
 _Commit Message_ hook
 -----------------------
 
-Enforce a certain pattern for a commit message. The hook is inspired by the proposal of the _[AngularJS][AngularJS]_ team that wrote their styleguide for the famous _[Karma-Runner][KarmaRunner]_.
+Enforce a certain pattern for a commit message.
 
 The format is like as follows:
 
@@ -55,6 +56,7 @@ Pre Commit _Valid-XML_ hook
 Checks _.xml_ files for well-formed format using _XMLLint_. For _Windows_ support see [this link][XMLLintOnWindows].
 
 
-[AngularJS]: https://www.angularjs.org/
-[KarmaRunner]: http://karma-runner.github.io/0.13/dev/git-commit-msg.html
 [XMLLintOnWindows]: http://stackoverflow.com/a/21227833
+[xmllint]: http://xmlsoft.org/xmllint.html
+[dos2unix]: http://dos2unix.sourceforge.net/
+[brew]: http://brew.sh
