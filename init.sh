@@ -10,7 +10,7 @@ read BASE_DIR
 #   BASE_DIR=/Users/dli/Sites/repos
 # fi
 
-BASE_DIR=/Users/dli/Sites/git
+BASE_DIR=/Users/user/Sites/git
 
 echo "Working directory: $BASE_DIR"
 
@@ -34,10 +34,18 @@ remove_sample_hooks() {
   done
 }
 
+remove_pre_commit_hooks() {
+  for file in $BASE_DIR/**/.git/hooks/* ; do
+    if [[ "$file" =~ ^pre-commit.* ]]; then
+      echo "Would remove pre-commit-hook: $file"
+    fi
+  done
+}
+
 init_repository() {
   for dir in $BASE_DIR/* ; do
     echo "I in directory: $dir"
-    cd $dir && git init
+    #cd $dir && git init
   done
 }
 
@@ -48,4 +56,5 @@ init_repository() {
 
 check_repository_existance
 remove_sample_hooks
+remove_pre_commit_hooks
 init_repository
