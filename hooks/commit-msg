@@ -11,7 +11,7 @@
 # e.g. FOO-1234: An elaborate commit message.
 #
 
-regx='(\w+-[[:digit:]]{1,4}\):\s)?[A-Z].+'
+regx="(^[A-Z]{1,4}-[[:digit:]]{1,4}:\s)?([A-Z].+)"
 msg=$'
 [POLICY] Please format your message correctly ..
 [POLICY] Use the format: TICKET-ID: An elaborate description\n'
