@@ -1,16 +1,35 @@
 #!/usr/bin/env bash
 
-output=`git diff --cached | grep ^+[^+] | tr -d "\000-\011\013-\177" | tr -d '\n'`
-cnt=${#output}
-if [ -n "$output" ]; then
-  echo -e "\n\nWARNING: Aborting commit! Non ascii characters found in change set:\n\n"
-  for ((i=0; i < cnt; i++))
-  do
-    char=${output:$i:1}
-    echo ""
-    echo "Found character '$char':"
-    git diff HEAD -S$char
-  done
-  exit 1
-fi
-exit 0
+# set -v
+# set -x
+
+nonascii() {
+  #LANG=C
+  grep --color=auto --line-number -H '[^ -~]\+';
+}
+
+git diff --cached --name-only | while read FILE; do
+
+  # if [[ "$FILE" =~ ^.+(md)$ ]]; then
+  if [[ "$FILE" =~ ^(^.+(xml|md)$) ]]
+  then
+
+    changed=`git diff --cached $FILE | grep --line-number '[^ -~]\+'`
+
+    if [[ -z "$changed" ]]
+    then
+      exit 0
+    fi
+
+    if [ $? == 0 ]
+    then
+      echo -e "\nWARNING: Found non-ascii values. Please fix them before committing.\n"
+      echo "$FILE"
+      echo "---"
+      echo "$changed"
+      echo "---"
+      exit 1
+    fi
+
+  fi
+done
